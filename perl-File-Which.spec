@@ -4,7 +4,7 @@
 #
 Name     : perl-File-Which
 Version  : 1.22
-Release  : 7
+Release  : 8
 URL      : https://cpan.metacpan.org/authors/id/P/PL/PLICEASE/File-Which-1.22.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PL/PLICEASE/File-Which-1.22.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libf/libfile-which-perl/libfile-which-perl_1.21-1.debian.tar.xz
