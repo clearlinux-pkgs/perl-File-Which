@@ -4,7 +4,7 @@
 #
 Name     : perl-File-Which
 Version  : 1.23
-Release  : 9
+Release  : 10
 URL      : https://cpan.metacpan.org/authors/id/P/PL/PLICEASE/File-Which-1.23.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PL/PLICEASE/File-Which-1.23.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libf/libfile-which-perl/libfile-which-perl_1.21-1.debian.tar.xz
