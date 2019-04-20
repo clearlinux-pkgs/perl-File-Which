@@ -4,7 +4,7 @@
 #
 Name     : perl-File-Which
 Version  : 1.23
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/P/PL/PLICEASE/File-Which-1.23.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PL/PLICEASE/File-Which-1.23.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libf/libfile-which-perl/libfile-which-perl_1.21-1.debian.tar.xz
@@ -24,6 +24,7 @@ version 1.23
 Summary: dev components for the perl-File-Which package.
 Group: Development
 Provides: perl-File-Which-devel = %{version}-%{release}
+Requires: perl-File-Which = %{version}-%{release}
 
 %description dev
 dev components for the perl-File-Which package.
