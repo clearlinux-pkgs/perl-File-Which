@@ -4,14 +4,15 @@
 #
 Name     : perl-File-Which
 Version  : 1.23
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/P/PL/PLICEASE/File-Which-1.23.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PL/PLICEASE/File-Which-1.23.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libf/libfile-which-perl/libfile-which-perl_1.21-1.debian.tar.xz
-Summary  : Portable implementation of which
+Summary  : 'Perl implementation of the which utility as an API'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-File-Which-license = %{version}-%{release}
+Requires: perl-File-Which-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -38,18 +39,28 @@ Group: Default
 license components for the perl-File-Which package.
 
 
+%package perl
+Summary: perl components for the perl-File-Which package.
+Group: Default
+Requires: perl-File-Which = %{version}-%{release}
+
+%description perl
+perl components for the perl-File-Which package.
+
+
 %prep
 %setup -q -n File-Which-1.23
-cd ..
-%setup -q -T -D -n File-Which-1.23 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libfile-which-perl_1.21-1.debian.tar.xz
+cd %{_builddir}/File-Which-1.23
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/File-Which-1.23/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/File-Which-1.23/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -59,7 +70,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -68,8 +79,8 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-File-Which
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-File-Which/LICENSE
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-File-Which/deblicense_copyright
+cp %{_builddir}/File-Which-1.23/LICENSE %{buildroot}/usr/share/package-licenses/perl-File-Which/9e9c2342163676b67e70ae492b987da7325f2747
+cp %{_builddir}/File-Which-1.23/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-File-Which/555d692969cc4c557c3e7a36cb224c1fde9bce68
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -82,7 +93,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/File/Which.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -90,5 +100,9 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-File-Which/LICENSE
-/usr/share/package-licenses/perl-File-Which/deblicense_copyright
+/usr/share/package-licenses/perl-File-Which/555d692969cc4c557c3e7a36cb224c1fde9bce68
+/usr/share/package-licenses/perl-File-Which/9e9c2342163676b67e70ae492b987da7325f2747
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/File/Which.pm
