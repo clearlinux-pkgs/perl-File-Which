@@ -4,7 +4,7 @@
 #
 Name     : perl-File-Which
 Version  : 1.23
-Release  : 14
+Release  : 15
 URL      : https://cpan.metacpan.org/authors/id/P/PL/PLICEASE/File-Which-1.23.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PL/PLICEASE/File-Which-1.23.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libf/libfile-which-perl/libfile-which-perl_1.21-1.debian.tar.xz
@@ -80,7 +80,7 @@ make TEST_VERBOSE=1 test
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-File-Which
 cp %{_builddir}/File-Which-1.23/LICENSE %{buildroot}/usr/share/package-licenses/perl-File-Which/9e9c2342163676b67e70ae492b987da7325f2747
-cp %{_builddir}/File-Which-1.23/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-File-Which/555d692969cc4c557c3e7a36cb224c1fde9bce68
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-File-Which/555d692969cc4c557c3e7a36cb224c1fde9bce68
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -105,4 +105,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/File/Which.pm
+/usr/lib/perl5/vendor_perl/5.30.2/File/Which.pm
